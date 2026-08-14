@@ -2,8 +2,8 @@ name: Financial News Bot - Timed
 
 on:
   schedule:
-    - cron: '0 16 * * *' # Türkiye saati ile 19:00
-    - cron: '0 18 * * *' # Türkiye saati ile 21:00
+    - cron: '0 16 * * *' 
+    - cron: '0 18 * * *' 
   workflow_dispatch:
 
 jobs:
@@ -29,4 +29,3 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: |
           python bot.py
-          
