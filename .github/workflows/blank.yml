@@ -1,4 +1,4 @@
-name: Financial News Bot - Timed
+name: Financial News Bot - Timed & Manual
 
 on:
   schedule:
