@@ -1,0 +1,32 @@
+name: Financial News Bot - Timed
+
+on:
+  schedule:
+    - cron: '0 16 * * *' # Türkiye saati ile 19:00
+    - cron: '0 18 * * *' # Türkiye saati ile 21:00
+  workflow_dispatch:
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install feedparser requests google-generativeai
+
+      - name: Run Bot Script
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          python bot.py
+          
